@@ -32,7 +32,28 @@ public class FlipperRotator : MonoBehaviour {
             else
             {
                 // Allow control
+                bool leftKeyHit = false;
+
+                #if UNITY_EDITOR
+
                 if (Input.GetKey("left"))
+                {
+                    leftKeyHit = true;
+                }
+
+                #else
+
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+                {
+                    Touch touch = Input.GetTouch(0);
+                    if (touch.position.x < Screen.width / 2)
+                    {
+                        leftKeyHit = true;
+                    }
+                }
+
+                #endif
+                if (leftKeyHit)
                 {
                     rigidbody.angularVelocity = new Vector3(0.0f, 0.0f, -flipperVelocity);
                 }
