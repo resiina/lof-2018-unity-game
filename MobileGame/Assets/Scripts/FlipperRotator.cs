@@ -15,6 +15,7 @@ public class FlipperRotator : MonoBehaviour {
     {
         rigidbody = GetComponent<Rigidbody>();
         rigidbody.maxAngularVelocity = 1000.0f;
+        rigidbody.centerOfMass = new Vector3(0.0f, 0.0f, 0.0f);
     }
 	
 	// Update is called once per frame
@@ -34,15 +35,12 @@ public class FlipperRotator : MonoBehaviour {
                 // Allow control
                 bool leftKeyHit = false;
 
-                #if UNITY_EDITOR
-
+#if UNITY_EDITOR
                 if (Input.GetKey("left"))
                 {
                     leftKeyHit = true;
                 }
-
-                #else
-
+#else
                 if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
                 {
                     Touch touch = Input.GetTouch(0);
@@ -51,8 +49,7 @@ public class FlipperRotator : MonoBehaviour {
                         leftKeyHit = true;
                     }
                 }
-
-                #endif
+#endif
                 if (leftKeyHit)
                 {
                     rigidbody.angularVelocity = new Vector3(0.0f, 0.0f, -flipperVelocity);
@@ -60,6 +57,7 @@ public class FlipperRotator : MonoBehaviour {
                 else if (angle >= angleLowLimit)
                 {
                     // Stop the flipper if at the original position
+                    rigidbody.rotation = Quaternion.Euler(0.0f, 0.0f, angleLowLimit);
                     rigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
                 }
             }
@@ -67,7 +65,41 @@ public class FlipperRotator : MonoBehaviour {
         
         if (name == "Right flipper")
         {
-            // TODO: right flipper movement
+            if (angle <= angleHighLimit)
+            {
+                // Don't allow control, just turn back
+                rigidbody.angularVelocity = new Vector3(0.0f, 0.0f, -flipperVelocity);
+            }
+            else
+            {
+                // Allow control
+                bool rightKeyHit = false;
+
+#if UNITY_EDITOR
+                if (Input.GetKey("right"))
+                {
+                    rightKeyHit = true;
+                }
+#else
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+                {
+                    Touch touch = Input.GetTouch(0);
+                    if (touch.position.x > Screen.width / 2)
+                    {
+                        rightKeyHit = true;
+                    }
+                }
+#endif
+                if (rightKeyHit)
+                {
+                    rigidbody.angularVelocity = new Vector3(0.0f, 0.0f, flipperVelocity);
+                }
+                else if (angle >= angleLowLimit)
+                {
+                    // Stop the flipper if at the original position
+                    rigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
+                }
+            }
         }
     }
 }
