@@ -24,8 +24,8 @@ public class BallMechanics : MonoBehaviour {
         scoreText.GetComponent<TextMesh>().text = points.ToString();
         collider_objects = new List<gameColliderObject>();
         GetComponent<Rigidbody>().AddForce(0.0f, launchVelocity, 0.0f, ForceMode.VelocityChange);
-        collider_objects.Add(new gameColliderObject { name = "Torus", bounce = 13.0f, score = 10 });
-        collider_objects.Add(new gameColliderObject { name = "flipper", bounce = 28.0f, score = 0 });
+        collider_objects.Add(new gameColliderObject { name = "Torus", bounce = 10.0f, score = 10 });
+        collider_objects.Add(new gameColliderObject { name = "flipper", bounce = 0.0f, score = 0 });
     }
 	
 	// Update is called once per frame
@@ -45,9 +45,9 @@ public class BallMechanics : MonoBehaviour {
             {
                 points += collider_objects[i].score;
                 scoreText.GetComponent<TextMesh>().text = points.ToString();
-                GetComponent<Rigidbody>().AddForce(0.0f, collider_objects[i].bounce, 0.0f, ForceMode.VelocityChange);
+                //GetComponent<Rigidbody>().AddForce(0.0f, collider_objects[i].bounce, 0.0f, ForceMode.VelocityChange);
                 GetComponent<Rigidbody>().velocity = Vector3.Reflect(GetComponent<Rigidbody>().velocity, collision.contacts[0].normal);
-
+                GetComponent<Rigidbody>().velocity += collision.contacts[0].normal * collider_objects[i].bounce;
             }
 
         }
