@@ -487,6 +487,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 6400000, guid: 1d873602dff316d4fb880c9977f4515e, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d873602dff316d4fb880c9977f4515e, type: 3}
   m_IsPrefabParent: 0
@@ -641,6 +645,10 @@ Prefab:
     - target: {fileID: 400000, guid: 1d873602dff316d4fb880c9977f4515e, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400000, guid: 1d873602dff316d4fb880c9977f4515e, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d873602dff316d4fb880c9977f4515e, type: 3}
@@ -971,6 +979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45b3116625b66e44936568c3cef2124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  launchVelocity: 21
 --- !u!1 &932051583
 GameObject:
   m_ObjectHideFlags: 0
