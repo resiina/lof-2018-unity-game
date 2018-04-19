@@ -29,6 +29,9 @@ ExportedObj/
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
+# Blender backup files
+*.blend1*
+
 # Builds
 *.apk
 *.unitypackage
