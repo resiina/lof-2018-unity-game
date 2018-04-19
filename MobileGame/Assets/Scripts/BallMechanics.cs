@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallLauncher : MonoBehaviour {
+public class BallMechanics : MonoBehaviour {
 
     public float launchVelocity = 30.0f;
 
