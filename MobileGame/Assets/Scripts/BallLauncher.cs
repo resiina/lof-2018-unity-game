@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class BallLauncher : MonoBehaviour {
 
+    public float launchVelocity = 30.0f;
+
 	// Use this for initialization
-	void Start () {
-        GetComponent<Rigidbody>().AddForce(0.0f, 30.0f, 0.0f, ForceMode.VelocityChange);
+	void Start ()
+    {
+        GetComponent<Rigidbody>().AddForce(0.0f, launchVelocity, 0.0f, ForceMode.VelocityChange);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 }
